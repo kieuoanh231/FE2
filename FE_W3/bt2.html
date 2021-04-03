@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    .button {
+        margin-left: 40%;
+        margin-top: 20%;
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+        background-color: chartreuse;
+    }
+    
+    .button:hover {
+        animation: hover 2s ease-in-out infinite;
+    }
+    
+    .button::after {
+        content: '';
+        /* animation: before 2s infinite; */
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        background-color: crimson;
+        box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+    }
+    
+    @keyframes before {
+        0% {
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1), 0 0 10px 10px #3851bc;
+        }
+        50% {
+            height: 130px;
+            width: 130px;
+            /* background-color: cornflowerblue; */
+            transform: scale(2, 2);
+            opacity: 0.5;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1), 0 0 10px 10px #3851bc;
+        }
+        75% {
+            transform: scale(1.5, 1.5);
+            opacity: 0.5;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1), 0 0 10px 10px #3851bc;
+        }
+        100% {
+            transform: scale(2.5, 2.5);
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1), 0 0 10px 10px #3851bc;
+            opacity: 0.3;
+        }
+    }
+    
+    @keyframes hover {
+        50% {
+            /* height: 130px;
+            width: 130px; */
+            /* background-color: cornflowerblue; */
+            transform: scale(2, 2);
+            opacity: 0.2;
+        }
+        100% {
+            opacity: 0.9;
+        }
+    }
+</style>
+
+<body>
+    <div class="button"></div>
+</body>
+
+</html>
