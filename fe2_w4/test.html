@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            position: relative;
+            /* transform: perspective(1000px) rotateY(30deg); */
+            margin: 50px 10px;
+            width: 600px;
+            height: 200px;
+            /* background-origin: border-box; */
+            border-left: 5px solid rgba(0, 0, 0, 0.5);
+            background-color: red;
+        }
+
+        div:before,
+        div:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 0;
+            height: 100%;
+            box-sizing: border-box;
+            background: transparent;
+            border-top: 4px solid white;
+            border-bottom: 4px solid white;
+            border-left: 10px solid white;
+            border-right: 6px solid rgba(0, 0, 0, 0.5);
+        }
+
+        div:before {
+            left: calc(33% - 7px);
+        }
+
+        div:after {
+            right: calc(33% - 7px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div></div>
+</body>
+
+</html>

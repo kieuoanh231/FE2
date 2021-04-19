@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            background-color: green;
+        }
+        .side_shape_back{
+            width: 100px;
+            height: 300px;
+            position: absolute;
+            right: 0;
+            top:  calc(50% - 150px);
+            fill: #00ab51;
+            
+            transition: transform 0.5s cubic-bezier(.26,-0.52,.4,1.47) ,
+                        width 0.5s .25s cubic-bezier(.26,-0.52,.4,1.47);
+        }
+        .side_shape_front{
+            position: absolute;
+            top: 200px;
+            right: 0;
+            width: 0;
+            height: 370px;
+            fill: white;
+            transition: 0.5s cubic-bezier(.48,-0.49,.5,1.44) .5s;
+        }
+
+        nav:hover .side_shape_back{
+            width: 300px;
+            transform: scaleY(1.75);
+        }
+
+        nav:hover .side_shape_front{
+            display: block;
+            width: 220px;
+            height: 370px;
+        }
+
+        nav ul{
+            position: absolute;
+            right: 0;
+            height: 176px;
+            margin: 0;
+            top: calc(50% - 88px);
+            list-style: none;
+        }
+
+        nav ul li{
+            font-weight: inherit;
+            padding: 0.8rem 1.2rem;;
+        }
+
+        nav ul li a{
+            text-decoration: none;
+            color: black;
+        }
+
+        nav ul li a::before{
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 6px;
+            height: 6px;
+            background-color: #00ab51;
+            border-radius: 50%;
+        }
+
+        nav ul li a::after{
+            font-weight: inherit;
+            padding: 0.8rem 1.2rem;;
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <svg class="side_shape_back" viewBox="0 0 130 200" preserveAspectRatio="none">
+            <path class="side_shape_back_4" d="M130,200V0c0,39.1-66.8,56.7-66.8,105.1C63.2,139.7,130,154.1,130,200z"></path>
+        </svg>
+        <svg class="side_shape_front" viewBox="0 0 130 200" preserveAspectRatio="none">
+            <path class="side_shape_front_2" d="M130,200V0c0,31.9-87.8,45.3-87.8,100C42.2,151.7,130,172,130,200z"></path>
+        </svg>
+
+        <ul>
+            <li><a href="">7 up</a></li>
+            <li><a href="">Product</a></li>
+            <li><a href="">About</a></li>
+            <li><a href="">Contact</a></li>
+        </ul>
+    </nav>
+</body>
+</html>
