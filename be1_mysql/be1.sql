@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3309
--- Generation Time: Jan 09, 2021 at 09:54 AM
--- Server version: 10.4.10-MariaDB
--- PHP Version: 7.3.12
+-- Host: 127.0.0.1:3306
+-- Generation Time: Jun 08, 2021 at 04:23 AM
+-- Server version: 8.0.21
+-- PHP Version: 7.3.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -32,8 +31,8 @@ USE `be1`;
 
 DROP TABLE IF EXISTS `categories`;
 CREATE TABLE IF NOT EXISTS `categories` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `category_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `category_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -48,17 +47,47 @@ INSERT INTO `categories` (`id`, `category_name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `comments`
+--
+
+DROP TABLE IF EXISTS `comments`;
+CREATE TABLE IF NOT EXISTS `comments` (
+  `comment_id` int NOT NULL AUTO_INCREMENT,
+  `comment_content` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `product_id` int NOT NULL,
+  PRIMARY KEY (`comment_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`comment_id`, `comment_content`, `product_id`) VALUES
+(34, '', 1),
+(33, 'hihi', 1),
+(32, 'hi', 2),
+(31, '', 1),
+(30, 'gg', 1),
+(29, 'gg', 1),
+(28, '', 1),
+(27, '', 1),
+(26, 'hihi hàng tốt quá', 1),
+(25, 'fd', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `products`
 --
 
 DROP TABLE IF EXISTS `products`;
 CREATE TABLE IF NOT EXISTS `products` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `product_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `product_description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `product_price` int(11) NOT NULL,
-  `product_photo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `product_view` int(11) NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `product_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `product_description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `product_price` int NOT NULL,
+  `product_photo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `product_view` int NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -67,9 +96,9 @@ CREATE TABLE IF NOT EXISTS `products` (
 --
 
 INSERT INTO `products` (`id`, `product_name`, `product_description`, `product_price`, `product_photo`, `product_view`) VALUES
-(1, 'Nước Lau Sàn Sunlight Tinh Dầu Thiên Nhiên - Hương Hoa Diên Vỹ 3.8kg', 'Giúp sàn nhà bạn sạch bóng không tì vết và ngát hương thơm chỉ sau một lần lau nhẹ\r\nCó thể sử dụng sản phẩm cho các không gian trong nhà như: phòng ngủ, phòng khách bếp và phòng tắm, mang lại vẻ sáng bóng cho tổ ấm của bạn.\r\nĐánh bay vết bẩn nhanh chóng- Giúp sàn nhà bạn sạch bóng không tì vết và ngát hương thơm chỉ sau một lần lau nhẹ\r\n- Có thể sử dụng sản phẩm cho các không gian trong nhà như: phòng ngủ, phòng khách bếp và phòng tắm, mang lại vẻ sáng bóng cho tổ ấm của bạn.\r\n- Đánh bay vết bẩn nhanh chóng\r\nGiá sản phẩm trên Tiki đã bao gồm thuế theo luật hiện hành. Tuy nhiên tuỳ vào từng loại sản phẩm hoặc phương thức, địa chỉ giao hàng mà có thể phát sinh thêm chi phí khác như phí vận chuyển, phụ phí hàng cồng kềnh, ...', 78000, '48b520f3b84fe0ca3c68529d624e33e3.jpg', 2),
-(2, 'Máy Khuếch Tán Tinh Dầu Kiêm Đèn Ngủ Mini USB Xiaomi HL (120ml)', 'Ba chức năng: làm ẩm không khí, khuếch tán tinh dầu, đèn ngủ\r\nDung tích: 120ml\r\nĐiều khiển bằng một nút bấm\r\nChất liệu: nhựa ABS + PP\r\nĐế silicon chống trượt\r\nPhương thức sạc: USB\r\nChức năng tắt nguồn thông minh và an toàn', 279000, '8dbc6c26f8b6ae8ef1feddba70494179.jpg', 3),
-(3, 'Bàn Chải Đánh Răng Điện Oral B Vitality', 'Bàn chải điện được kiểm nghiệm làm sạch răng tốt hơn so với bàn chải thông thường\r\nKiểu dáng thiết kế tạo thế cầm chắc chắn,bọc lót khi cầm không bị rơi\r\nRất tốt cho cả trẻ nhỏ và người lớn ( khuyến khích trẻ tự bảo vệ răng miệng )\r\nHữu dụng khi trẻ bị viêm lợi hay đang kiềng răng\r\nĐánh răng với tốc độ chậm hơn giúp làm sạch răng lợi nhạy cảm\r\nGiúp chải răng sạch trong mọi ngõ ngách\r\nOral-B là nhãn hiệu được các nha sĩ khuyên dùng', 497000, 'a4ac08485ff7545e6f4c728df9841fa3.jpg', 2),
+(1, 'Nước Lau Sàn Sunlight Tinh Dầu Thiên Nhiên - Hương Hoa Diên Vỹ 3.8kg', 'Giúp sàn nhà bạn sạch bóng không tì vết và ngát hương thơm chỉ sau một lần lau nhẹ\r\nCó thể sử dụng sản phẩm cho các không gian trong nhà như: phòng ngủ, phòng khách bếp và phòng tắm, mang lại vẻ sáng bóng cho tổ ấm của bạn.\r\nĐánh bay vết bẩn nhanh chóng- Giúp sàn nhà bạn sạch bóng không tì vết và ngát hương thơm chỉ sau một lần lau nhẹ\r\n- Có thể sử dụng sản phẩm cho các không gian trong nhà như: phòng ngủ, phòng khách bếp và phòng tắm, mang lại vẻ sáng bóng cho tổ ấm của bạn.\r\n- Đánh bay vết bẩn nhanh chóng\r\nGiá sản phẩm trên Tiki đã bao gồm thuế theo luật hiện hành. Tuy nhiên tuỳ vào từng loại sản phẩm hoặc phương thức, địa chỉ giao hàng mà có thể phát sinh thêm chi phí khác như phí vận chuyển, phụ phí hàng cồng kềnh, ...', 78000, '48b520f3b84fe0ca3c68529d624e33e3.jpg', 6),
+(2, 'Máy Khuếch Tán Tinh Dầu Kiêm Đèn Ngủ Mini USB Xiaomi HL (120ml)', 'Ba chức năng: làm ẩm không khí, khuếch tán tinh dầu, đèn ngủ\r\nDung tích: 120ml\r\nĐiều khiển bằng một nút bấm\r\nChất liệu: nhựa ABS + PP\r\nĐế silicon chống trượt\r\nPhương thức sạc: USB\r\nChức năng tắt nguồn thông minh và an toàn', 279000, '8dbc6c26f8b6ae8ef1feddba70494179.jpg', 6),
+(3, 'Bàn Chải Đánh Răng Điện Oral B Vitality', 'Bàn chải điện được kiểm nghiệm làm sạch răng tốt hơn so với bàn chải thông thường\r\nKiểu dáng thiết kế tạo thế cầm chắc chắn,bọc lót khi cầm không bị rơi\r\nRất tốt cho cả trẻ nhỏ và người lớn ( khuyến khích trẻ tự bảo vệ răng miệng )\r\nHữu dụng khi trẻ bị viêm lợi hay đang kiềng răng\r\nĐánh răng với tốc độ chậm hơn giúp làm sạch răng lợi nhạy cảm\r\nGiúp chải răng sạch trong mọi ngõ ngách\r\nOral-B là nhãn hiệu được các nha sĩ khuyên dùng', 497000, 'a4ac08485ff7545e6f4c728df9841fa3.jpg', 3),
 (4, 'Combo 2 Nước Rửa Chén Sunlight Khử mùi tanh Matcha Trà Nhật (2.1kg x 2)', 'Chiết xuất từ chanh và trà xanh\r\nKhử sạch mùi tanh\r\nAn toàn, dịu nhẹ\r\nHương thơm tươi mát\r\nThiết kế dạng túi tiết kiệm', 114000, '665501a0521a479c4b6015325a63877a.jpg', 0),
 (5, 'Nước Rửa Chén Sunlight Chanh Công Nghệ Mới Dạng Túi', 'Nước rửa chén Sunlight Chanh mới, với công nghệ xả bọt nhanh nay có:\r\nCông thức đánh bay dầu mỡ hiệu quả\r\nSunlight với chiết xuất chanh và công nghệ xả bọt nhanh mới, giúp đánh bay dầu mỡ hiệu quả.\r\nNgoài khả năng đánh tan dầu mỡ, Nước Rửa Chén Sunlight Chanh còn có hương thơm thanh mát\r\nDịu nhẹ với da tay, được kiểm nghiệm và chứng nhận bởi Viện Da Liễu\r\nDung tích chai lớn 3.8kg sử dụng tiết kiệm hơn\r\nBao bì sản phẩm có thể thay đổi theo từng đợt nhập hàng\r\nNước Rửa Chén Sunlight Chanh Công Nghệ Mới Dạng Túi nay với công nghệ xả bọt nhanh mang lại khả năng đánh bay dầu mỡ hiệu quả hơn, không bám bọt.\r\nSản phẩm có khả năng rửa sạch dầu mỡ cả trên đồ nhựa và dịu nhẹ dịu với da tay, an toàn cho người dùng.\r\nVới hương chanh tươi mát, đây sẽ là sự lựa chọn hoàn hảo cho các bà nội trợ.\r\nLƯU Ý:\r\n\r\nKhông được uống.\r\nĐể xa tầm tay trẻ em.\r\nNếu sản phẩm dính vào mắt, rửa sạch bằng nước.\r\nNếu nuốt phải, uống ngay 1 ly nước hoặc sữa, nếu cần thì đến cơ sở y tế.\r\nLưu trữ nơi khô ráo, tránh ánh nắng trực tiếp\r\nGiá sản phẩm trên Tiki đã bao gồm thuế theo luật hiện hành. Tuy nhiên tuỳ vào từng loại sản phẩm hoặc phương thức, địa chỉ giao hàng mà có thể phát sinh thêm chi phí khác như phí vận chuyển, phụ phí hàng cồng kềnh, ...', 59000, '8bf11311ceaa75bc49597b4fc22531fd.jpg', 0),
 (6, 'Bếp Điện Từ Sunhouse SHD6800 - Tặng Kèm Nồi Lẩu - Hàng chính hãng', 'Công suất: 2000W\r\nPhím bấm cảm ứng\r\nMặt kính chịu nhiệt siêu bền\r\nChế độ nấu đa dạng\r\nMặt bếp từ lớn, nấu ăn hiệu quả\r\nKhóa trẻ em an toàn tuyệt đối', 579000, '07ab883b2b0b8eb1be1794b8ff836bef.jpg', 0),
@@ -83,8 +112,8 @@ INSERT INTO `products` (`id`, `product_name`, `product_description`, `product_pr
 
 DROP TABLE IF EXISTS `products_categories`;
 CREATE TABLE IF NOT EXISTS `products_categories` (
-  `product_id` int(11) NOT NULL,
-  `category_id` int(11) NOT NULL,
+  `product_id` int NOT NULL,
+  `category_id` int NOT NULL,
   PRIMARY KEY (`product_id`,`category_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -100,6 +129,20 @@ INSERT INTO `products_categories` (`product_id`, `category_id`) VALUES
 (5, 1),
 (6, 2),
 (7, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ratings`
+--
+
+DROP TABLE IF EXISTS `ratings`;
+CREATE TABLE IF NOT EXISTS `ratings` (
+  `rating_id` int NOT NULL AUTO_INCREMENT,
+  `rating_number` int NOT NULL,
+  `product_id` int NOT NULL,
+  PRIMARY KEY (`rating_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
